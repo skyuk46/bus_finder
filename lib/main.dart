@@ -6,6 +6,7 @@ import 'package:bus_finder/CNG02.dart';
 import 'package:bus_finder/CNG03.dart';
 import 'package:bus_finder/CNG04.dart';
 import 'package:bus_finder/busRoute.dart';
+import 'package:bus_finder/stopInfo.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async{
@@ -80,44 +81,36 @@ List<String> bus_route_search = [
 ];
 
 List<String> bus_stop_base = [
-  'Điểm cuối Vân Hà (Đông Anh)    >',
+  'Phố cầu    >',
   'Dốc Vệ Tinh        >',
-  'Cầu La Khê         >',
-  'Đối diện Công ty Thịnh Thành      >',
-  'BVĐK khu vực Phúc Yên                >',
   'Bệnh viện đa khoa Thăng Long    >',
   'Đại sứ quán Nhật Bản             >',
-  'Ngã 3 Tây Sơn Võng Xuyên    >',
-  'Ngã tư đại lộ Thăng Long - Khuất Duy Tiến    >',
-  'Ngãi Cầu               >',
-  'Metro Hà Đông    >',
   'Đình làng Bùng    >',
-  'Đối diện Đường vào Học Viện Phòng Không Không Quân - Công ty Thịnh Cường    >',
   'Ngã 3 Đỗ Xá    >',
-  'Nhà CT2B Khu đô thị Văn Quán    >',
-  'Trường THCS Đông Ng      >',
-  'Bến xe Lương Yên               >',
-  'Nhà máy nước Đông Dư    >',
+  'Làng Lương Xá  >',
+  'Bệnh viện K Hà Nội    >',
+  'Nhà thi đấu Hà Đông   >',
+  'Thôn Xuân Tình        >',
+  'Đình Nam Dư Hạ        >',
+  'Bưu cục Trâu Quỳ      >',
+  'Đại học Hà Nội        >',
+  'Nhà D10        >',
 ];
 List<String> bus_stop_search = [
-  'Điểm cuối Vân Hà (Đông Anh)    >',
+  'Phố Cầu    >',
   'Dốc Vệ Tinh        >',
-  'Cầu La Khê         >',
-  'Đối diện Công ty Thịnh Thành      >',
-  'BVĐK khu vực Phúc Yên                >',
   'Bệnh viện đa khoa Thăng Long    >',
   'Đại sứ quán Nhật Bản             >',
-  'Ngã 3 Tây Sơn Võng Xuyên    >',
-  'Ngã tư đại lộ Thăng Long - Khuất Duy Tiến    >',
-  'Ngãi Cầu               >',
-  'Metro Hà Đông    >',
   'Đình làng Bùng    >',
-  'Đối diện Đường vào Học Viện Phòng Không Không Quân - Công ty Thịnh Cường    >',
   'Ngã 3 Đỗ Xá    >',
-  'Nhà CT2B Khu đô thị Văn Quán    >',
-  'Trường THCS Đông Ng      >',
-  'Bến xe Lương Yên               >',
-  'Nhà máy nước Đông Dư    >',
+  'Làng Lương Xá  >',
+  'Bệnh viện K Hà Nội    >',
+  'Nhà thi đấu Hà Đông   >',
+  'Thôn Xuân Tình        >',
+  'Đình Nam Dư Hạ        >',
+  'Bưu cục Trâu Quỳ      >',
+  'Đại học Hà Nội        >',
+  'Nhà D10        >',
 ];
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -288,6 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: ListView(
+        shrinkWrap: true,
         children: <Widget>[
           widget1,
           widget2,
@@ -462,8 +456,11 @@ class _SearchStopBar extends State<SearchStopBar> {
 
 class BusStopList extends StatelessWidget {
 
-  void BusStop(String stop) {
-
+  _showDialog(BuildContext context, String x) {
+    showDialog(
+        context: context,
+        builder: (context) => new stopInfo(x)
+    );
   }
 
   @override
@@ -477,7 +474,7 @@ class BusStopList extends StatelessWidget {
               for (var x in bus_stop_search)
                 InkWell(
                     onTap: () {
-                      BusStop(x);
+                      _showDialog(context, x);
                     },
                     child: Padding(
                         padding: EdgeInsets.only(top: 10, bottom: 15, left: 30),
